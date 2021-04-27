@@ -17,15 +17,19 @@ public class StockAnalyzer {
     public static int getMaxProfit(int[] stockPriceList) {
         validateStockPriceList(stockPriceList);
         validateStockPrice(stockPriceList[0]);
+
         int buyPrice = stockPriceList[0];
         int profit = Integer.MIN_VALUE;
+
         for (int i =1; i < stockPriceList.length; i++) {
-            validateStockPrice(stockPriceList[i]);
-            if (profit < stockPriceList[i] - buyPrice) {
-                profit = stockPriceList[i] - buyPrice;
+            int currentPrice = stockPriceList[i];
+            validateStockPrice(currentPrice);
+
+            if (profit < currentPrice - buyPrice) {
+                profit = currentPrice - buyPrice;
             }
-            if (buyPrice > stockPriceList[i]) {
-                buyPrice = stockPriceList[i];
+            if (buyPrice > currentPrice) {
+                buyPrice = currentPrice;
             }
         }
         return profit;
